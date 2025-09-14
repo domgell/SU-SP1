@@ -6,17 +6,17 @@ namespace Enemy
 {
     public class RockEnemy : MonoBehaviour
     {
-        [SerializeField] private Transform pathBegin;
-        [SerializeField] private Transform pathEnd;
+        [SerializeField] private Vector2 pathBegin;
+        [SerializeField] private Vector2 pathEnd;
         [SerializeField] private float movementSpeed = 100;
         [SerializeField] private float bounceForce = 300;
+        [SerializeField] private float damage = 25;
 
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
-
+        private Health _health;
         private bool _movingToEnd = true;
-        private bool _alive = true;
         private const float targetMinDistance = 0.1f;
 
         void Start()
@@ -24,15 +24,18 @@ namespace Enemy
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
+            _health = GetComponent<Health>();
+
+            _health.OnDamage += amount => { Debug.Log("Enemy damaged"); };
+
+            _health.OnDeath += () => { Destroy(gameObject.gameObject); };
         }
 
         private void FixedUpdate()
         {
-            if (!_alive) return;
-
             // Distance and direction to target path
             var targetPath = _movingToEnd ? pathEnd : pathBegin;
-            Vector2 toTarget = targetPath.position - transform.position;
+            var toTarget = targetPath - new Vector2(transform.position.x, transform.position.y);
             var targetDistance = toTarget.magnitude;
 
             // Set target path for next frame 
@@ -47,8 +50,12 @@ namespace Enemy
 
             // Flip sprite towards movement direction
             _spriteRenderer.flipX = moveX > 0;
+        }
 
-            Debug.DrawLine(targetPath.position, targetPath.position + Vector3.up);
+        private void OnDrawGizmosSelected()
+        {
+            Debug.DrawLine(pathBegin, pathBegin + Vector2.up, Color.red);
+            Debug.DrawLine(pathEnd, pathEnd + Vector2.up, Color.red);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -62,16 +69,20 @@ namespace Enemy
             // Enemy hit
             if (playerAngle > 90)
             {
+                // Player bounce off enemy
                 var playerRigidBody = player.GetComponent<Rigidbody2D>();
                 playerRigidBody.linearVelocityY = 0;
                 playerRigidBody.AddForceY(bounceForce);
-                
-                // TODO: Enemy dead
+
+                _health.TryDamage(1f);
+                Debug.Log("Enemy hit!");
             }
             // Player hit
             else
             {
-                // TODO: Player take damage
+                var playerHealth = player.GetComponent<Health>();
+                playerHealth.TryDamage(damage);
+                Debug.Log("Player hit!");
             }
         }
     }

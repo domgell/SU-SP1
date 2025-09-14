@@ -13,15 +13,28 @@ namespace Player
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
+        private Health _health;
         
         private const float _groundRayDistance = 0.25f;
         private float _moveX;
+        private bool _canDoubleJump = true;
 
         void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
+            _health = GetComponent<Health>();
+
+            _health.OnDamage += amount =>
+            {
+                Debug.Log("Player damaged");
+            };
+            
+            _health.OnDeath += () =>
+            {
+                Debug.Log("Player dead");
+            };
         }
 
         void Update()
@@ -35,9 +48,24 @@ namespace Player
 
             // Try jump
             var isGrounded = IsGrounded();
-            if (isGrounded && Input.GetButtonDown("Jump"))
+            var wantJump = Input.GetButtonDown("Jump");
+            // Normal jump
+            if (isGrounded && wantJump)
             {
-                _rigidbody2D.AddForceY(jumpForce);
+                _animator.SetBool("isDoubleJumping", false);
+                _canDoubleJump = true;
+                Jump();
+            }
+            // Double jump
+            else if (wantJump && _canDoubleJump)
+            {
+                _animator.SetBool("isDoubleJumping", true);
+                _canDoubleJump = false;
+                Jump();
+            }
+            else
+            {
+                _animator.SetBool("isDoubleJumping", false);
             }
 
             // Update animation
@@ -48,6 +76,12 @@ namespace Player
             _animator.SetFloat("movementVelocityY", movementVelocityY);
         }
 
+        private void Jump()
+        {
+            _rigidbody2D.linearVelocityY = 0;
+            _rigidbody2D.AddForceY(jumpForce);
+        }
+        
         private void FixedUpdate()
         {
             _rigidbody2D.linearVelocityX = _moveX * movementSpeed * Time.deltaTime;
@@ -58,11 +92,6 @@ namespace Player
             var left = Physics2D.Raycast(leftFoot.position, Vector2.down, _groundRayDistance, groundLayer);
             var right = Physics2D.Raycast(rightFoot.position, Vector2.down, _groundRayDistance, groundLayer);
             return left || right;
-        }
-
-        public void TryTakeDamage(int amount)
-        {
-            
         }
     }
 }
