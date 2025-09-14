@@ -35,6 +35,20 @@ public class Health : MonoBehaviour
         return true;
     }
 
+    public void Kill()
+    {
+        if (!IsAlive) return;
+        
+        CurrentHealth = 0;
+        OnDeath?.Invoke();
+    }
+
+    public void Reset()
+    {
+        CurrentHealth = maxHealth;
+        TimeSinceDamage = damageCooldown;
+    }
+
     private void Update()
     {
         TimeSinceDamage += Time.deltaTime;

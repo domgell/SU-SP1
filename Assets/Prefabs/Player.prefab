@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6675957024896450537
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 385134671764867035}
-  m_Layer: 0
-  m_Name: LeftFoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &385134671764867035
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6675957024896450537}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 292905511823901403}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7170038776101148771
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +15,7 @@ GameObject:
   - component: {fileID: 1310896012126094237}
   - component: {fileID: 2915572572955926880}
   - component: {fileID: 5783484379024652499}
+  - component: {fileID: -4387947566917154351}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -65,9 +35,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 385134671764867035}
-  - {fileID: 7193696097952309826}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3615540151908656826
@@ -137,13 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b814095ef008c2244beaa0301d61600a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 250
-  jumpForce: 300
-  leftFoot: {fileID: 385134671764867035}
-  rightFoot: {fileID: 7193696097952309826}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!50 &1233907939498366100
 Rigidbody2D:
   serializedVersion: 5
@@ -242,34 +203,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b74230f4e057cb4ea2108aeae0a34a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8642536792251538124
-GameObject:
+  maxHealth: 100
+  damageCooldown: 0.1
+--- !u!114 &-4387947566917154351
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7193696097952309826}
-  m_Layer: 0
-  m_Name: RightFoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7193696097952309826
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8642536792251538124}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 292905511823901403}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 7170038776101148771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ea61d34629bc54fb41751f76e6ede9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 250
+  jumpForce: 300
+  maxSlope: 45
+  maxJumpCount: 2

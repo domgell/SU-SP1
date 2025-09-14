@@ -11,6 +11,7 @@ namespace Enemy
         [SerializeField] private float movementSpeed = 100;
         [SerializeField] private float bounceForce = 300;
         [SerializeField] private float damage = 25;
+        [SerializeField] private float damageAngle = 100f;
 
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
@@ -67,7 +68,7 @@ namespace Enemy
             var playerAngle = Vector2.Angle(toPlayer.normalized, Vector2.up);
 
             // Enemy hit
-            if (playerAngle > 90)
+            if (playerAngle > damageAngle)
             {
                 // Player bounce off enemy
                 var playerRigidBody = player.GetComponent<Rigidbody2D>();

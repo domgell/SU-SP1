@@ -1,97 +1,57 @@
+using System;
 using UnityEngine;
 
 namespace Player
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] private float movementSpeed = 250f;
-        [SerializeField] private float jumpForce = 300f;
-        [SerializeField] private Transform leftFoot;
-        [SerializeField] private Transform rightFoot;
-        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private Vector2 respawnPoint;
         
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
         private Health _health;
-        
-        private const float _groundRayDistance = 0.25f;
-        private float _moveX;
-        private bool _canDoubleJump = true;
+        private PlayerMovement _playerMovement;
+        private readonly Vector4 _hitFlashColor = new(1, 0.1f, 0.1f, 1);
 
-        void Start()
+        private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             _health = GetComponent<Health>();
+            _playerMovement = GetComponent<PlayerMovement>();
 
-            _health.OnDamage += amount =>
-            {
-                Debug.Log("Player damaged");
-            };
-            
-            _health.OnDeath += () =>
-            {
-                Debug.Log("Player dead");
-            };
+            _health.OnDeath += Respawn;
         }
 
-        void Update()
+        private void Respawn()
         {
-            // Flip sprite towards movement direction
-            _moveX = Input.GetAxis("Horizontal");
-            if (_moveX != 0)
-            {
-                _spriteRenderer.flipX = _moveX < 0;
-            }
+            _health.Reset();
+            transform.position = respawnPoint;
+            _rigidbody2D.linearVelocity = Vector2.zero;
+        }
 
-            // Try jump
-            var isGrounded = IsGrounded();
-            var wantJump = Input.GetButtonDown("Jump");
-            // Normal jump
-            if (isGrounded && wantJump)
-            {
-                _animator.SetBool("isDoubleJumping", false);
-                _canDoubleJump = true;
-                Jump();
-            }
-            // Double jump
-            else if (wantJump && _canDoubleJump)
-            {
-                _animator.SetBool("isDoubleJumping", true);
-                _canDoubleJump = false;
-                Jump();
-            }
-            else
-            {
-                _animator.SetBool("isDoubleJumping", false);
-            }
+        private void Update()
+        {
+            // Flash red on damage
+            var alpha = Mathf.Clamp01(_health.TimeSinceDamage / _health.DamageCooldown);
+            _spriteRenderer.color = Color.Lerp(_hitFlashColor, Color.white, alpha);
+
+            // Flip sprite in movement direction
+            var moveX = _playerMovement.MovementInputX;
+            if (moveX != 0) _spriteRenderer.flipX = moveX < 0;
 
             // Update animation
-            var movementSpeedX = Mathf.Abs(_moveX);
-            _animator.SetFloat("movementSpeedX", movementSpeedX);
-            _animator.SetBool("isGrounded", isGrounded);
-            var movementVelocityY = _rigidbody2D.linearVelocityY;
-            _animator.SetFloat("movementVelocityY", movementVelocityY);
+            _animator.SetFloat("movementSpeedX", Mathf.Abs(moveX));
+            _animator.SetBool("isGrounded", _playerMovement.IsGrounded);
+            _animator.SetInteger("jumpCount", _playerMovement.CurrentJumpCount);
+            _animator.SetBool("isFalling", _rigidbody2D.linearVelocityY < 0);
         }
 
-        private void Jump()
+        private void OnDrawGizmosSelected()
         {
-            _rigidbody2D.linearVelocityY = 0;
-            _rigidbody2D.AddForceY(jumpForce);
-        }
-        
-        private void FixedUpdate()
-        {
-            _rigidbody2D.linearVelocityX = _moveX * movementSpeed * Time.deltaTime;
-        }
-
-        private bool IsGrounded()
-        {
-            var left = Physics2D.Raycast(leftFoot.position, Vector2.down, _groundRayDistance, groundLayer);
-            var right = Physics2D.Raycast(rightFoot.position, Vector2.down, _groundRayDistance, groundLayer);
-            return left || right;
+            Debug.DrawLine(respawnPoint, respawnPoint + Vector2.up, Color.red);
         }
     }
 }
