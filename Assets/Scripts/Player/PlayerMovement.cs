@@ -36,6 +36,8 @@ namespace Player
         public int CurrentJumpCount { get; private set; }
         public float MovementInputX { get; private set; }
         public bool IsGrounded => _rigidbody2D.IsTouching(_contactFilter);
+        public event Action OnJump;
+        public event Action OnLand;
         
         private void Start()
         {
@@ -57,7 +59,11 @@ namespace Player
             var isGrounded = IsGrounded;
             
             // Reset jump count when landing
-            if (isGrounded && !_wasGrounded) CurrentJumpCount = 0;
+            if (isGrounded && !_wasGrounded)
+            {
+                CurrentJumpCount = 0;
+                OnLand?.Invoke();
+            };
             
             // Jump
             var canJump = isGrounded || (CurrentJumpCount < maxJumpCount);
@@ -67,10 +73,15 @@ namespace Player
                 _rigidbody2D.AddForceY(jumpForce);
 
                 CurrentJumpCount++;
+                OnJump?.Invoke();
             }
             
             // Apply movement
-            _rigidbody2D.linearVelocityX = MovementInputX * movementSpeed * Time.deltaTime;
+            //_rigidbody2D.linearVelocityX = MovementInputX * movementSpeed * Time.deltaTime;
+            if (MovementInputX != 0)
+            {
+                _rigidbody2D.linearVelocityX = MovementInputX * movementSpeed * Time.deltaTime;
+            }
 
             _wantJump = false;
             MovementInputX = 0;

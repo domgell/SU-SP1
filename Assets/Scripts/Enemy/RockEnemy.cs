@@ -6,61 +6,53 @@ namespace Enemy
 {
     public class RockEnemy : MonoBehaviour
     {
-        [SerializeField] private Vector2 pathBegin;
-        [SerializeField] private Vector2 pathEnd;
-        [SerializeField] private float movementSpeed = 100;
         [SerializeField] private float bounceForce = 300;
         [SerializeField] private float damage = 25;
         [SerializeField] private float damageAngle = 100f;
+        [SerializeField] private AudioClip deathSound;
+        [SerializeField] private ParticleSystem deathParticleSystem;
 
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
-        private Animator _animator;
         private Health _health;
-        private bool _movingToEnd = true;
-        private const float targetMinDistance = 0.1f;
+        private AudioSource _audioSource;
+        private bool _active = true;
 
-        void Start()
+        private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _animator = GetComponent<Animator>();
             _health = GetComponent<Health>();
+            _audioSource = GetComponent<AudioSource>();
+            
+            _health.OnDeath += Death;
+        }
+        
+        private void Death()
+        {
+            _audioSource.PlayOneShot(deathSound);
+            
+            var particles = Instantiate(deathParticleSystem, transform.position, Quaternion.identity);
+            Destroy(particles.gameObject, 5f);
 
-            _health.OnDamage += amount => { Debug.Log("Enemy damaged"); };
-
-            _health.OnDeath += () => { Destroy(gameObject.gameObject); };
+            _spriteRenderer.enabled = false;
+            Destroy(gameObject, 3f);
+            _active = false;
         }
 
         private void FixedUpdate()
         {
-            // Distance and direction to target path
-            var targetPath = _movingToEnd ? pathEnd : pathBegin;
-            var toTarget = targetPath - new Vector2(transform.position.x, transform.position.y);
-            var targetDistance = toTarget.magnitude;
-
-            // Set target path for next frame 
-            if (targetDistance < targetMinDistance)
-            {
-                _movingToEnd = !_movingToEnd;
-            }
-
-            // Apply movement
-            var moveX = Mathf.Sign(toTarget.x);
-            _rigidbody2D.linearVelocityX = moveX * movementSpeed * Time.deltaTime;
-
-            // Flip sprite towards movement direction
+            if (!_active) return;
+            
+            // Flip sprite in movement direction
+            var moveX = Mathf.Sign(_rigidbody2D.linearVelocityX);
             _spriteRenderer.flipX = moveX > 0;
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Debug.DrawLine(pathBegin, pathBegin + Vector2.up, Color.red);
-            Debug.DrawLine(pathEnd, pathEnd + Vector2.up, Color.red);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (!_active) return;
+            
             var player = collision.gameObject;
             if (!player.CompareTag("Player")) return;
 
@@ -76,14 +68,12 @@ namespace Enemy
                 playerRigidBody.AddForceY(bounceForce);
 
                 _health.TryDamage(1f);
-                Debug.Log("Enemy hit!");
             }
             // Player hit
             else
             {
                 var playerHealth = player.GetComponent<Health>();
                 playerHealth.TryDamage(damage);
-                Debug.Log("Player hit!");
             }
         }
     }
