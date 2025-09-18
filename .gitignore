@@ -55,6 +55,8 @@ ExportedObj/
 *.opendb
 *.VC.db
 *.idea
+.vsconfig
+UpgradeLog.htm
 
 # Unity3D generated meta files
 *.pidb.meta
