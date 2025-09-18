@@ -8056,7 +8056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845044020}
   m_Layer: 0
-  m_Name: Enemies
+  m_Name: ---Enemies---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9341,7 +9341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 914752671}
   m_Layer: 0
-  m_Name: Apples
+  m_Name: ---Apples---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12377,7 +12377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1227232227}
   m_Layer: 0
-  m_Name: Platforms
+  m_Name: ---Platforms---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
