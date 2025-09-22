@@ -1,12 +1,13 @@
 using System;
+using JetBrains.Annotations;
+using Player;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
@@ -15,6 +16,6 @@ public class Platform : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) return;
         
-        other.rigidbody.linearVelocity += _rigidbody2D.linearVelocity * Time.deltaTime;
+        other.rigidbody.AddForce(_rigidbody2D.linearVelocity * Time.deltaTime);
     }
 }
