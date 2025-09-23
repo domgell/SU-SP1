@@ -78,7 +78,7 @@ namespace Player
         /// </summary>
         [HideInInspector]
         public CollisionPlane CurrentCollisionPlane { get; private set; }
-
+        
         /// <summary>
         /// Invoked when the player jumps (from ground, wall or air)
         /// </summary>
@@ -123,8 +123,22 @@ namespace Player
         {
             CurrentCollisionPlane = GetCollisionPlane();
 
-            #region Movement
+            // Slide down wall
+            if (CurrentCollisionPlane is CollisionPlane.LeftWall or CollisionPlane.RightWall)
+            {
+                _rigidbody2D.AddForceY(-wallSlideDownForce);
+            }
 
+            UpdateMovement();
+            UpdateJump();
+
+            _wantJump = false;
+            _wantMove = false;
+            _prevCollisionPlane = CurrentCollisionPlane;
+        }
+
+        private void UpdateMovement()
+        {
             var targetSpeed = MovementInputX * movementSpeed;
             var currentVelocityX = _rigidbody2D.linearVelocityX;
 
@@ -145,71 +159,61 @@ namespace Player
                 var deceleration = -currentVelocityX * movementDeceleration;
                 _rigidbody2D.AddForceX(deceleration);
             }
+        }
 
-            #endregion
-
-            if (CurrentCollisionPlane is CollisionPlane.LeftWall or CollisionPlane.RightWall)
-            {
-                _rigidbody2D.AddForceY(-wallSlideDownForce);
-            }
-
-            #region Jump
-
+        private void UpdateJump()
+        {
             // Reset jump count upon hitting ground/wall
             if (CurrentCollisionPlane is not CollisionPlane.None && _prevCollisionPlane is CollisionPlane.None)
             {
                 OnLand?.Invoke();
                 CurrentJumpCount = 0;
-                _rigidbody2D.linearVelocityY = 0;
+
+                // Reset Y velocity when landing on wall to prevent slipping off immediately
+                if (CurrentCollisionPlane is CollisionPlane.LeftWall or CollisionPlane.RightWall)
+                    _rigidbody2D.linearVelocityY = 0;
             }
 
-            if (_wantJump && CurrentJumpCount < maxJumpCount)
+            if (!_wantJump || CurrentJumpCount >= maxJumpCount) return;
+
+            // Jump from ground
+            if (CurrentCollisionPlane == CollisionPlane.Ground)
             {
-                // Jump from ground
-                if (CurrentCollisionPlane == CollisionPlane.Ground)
-                {
-                    _rigidbody2D.linearVelocityY = 0;
-                    _rigidbody2D.AddForceY(jumpForce);
-                    CurrentJumpCount = 1;
-                }
-                // Wall jump
-                else if (CurrentCollisionPlane is CollisionPlane.LeftWall or CollisionPlane.RightWall)
-                {
-                    _rigidbody2D.linearVelocity = Vector2.zero;
-                    _rigidbody2D.AddForceY(jumpForce);
+                _rigidbody2D.linearVelocityY = 0;
+                _rigidbody2D.AddForceY(jumpForce);
+                CurrentJumpCount = 1;
+            }
+            // Wall jump
+            else if (CurrentCollisionPlane is CollisionPlane.LeftWall or CollisionPlane.RightWall)
+            {
+                _rigidbody2D.linearVelocity = Vector2.zero;
+                _rigidbody2D.AddForceY(jumpForce);
 
-                    // Apply sideways force away from wall
-                    var wallJumpSign = CurrentCollisionPlane == CollisionPlane.LeftWall ? -1 : 1;
-                    var wallJumpForce = jumpForce * wallJumpSign * wallJumpForceMultiplier;
-                    _rigidbody2D.AddForceX(wallJumpForce);
+                // Apply sideways force away from wall
+                var wallJumpSign = CurrentCollisionPlane == CollisionPlane.LeftWall ? -1 : 1;
+                var wallJumpForce = jumpForce * wallJumpSign * wallJumpForceMultiplier;
+                _rigidbody2D.AddForceX(wallJumpForce);
 
-                    _timeSinceWallJump = 0;
-                    CurrentJumpCount = 1;
-                }
-                // Air jump (e.g double jump)
-                else
-                {
-                    _rigidbody2D.linearVelocityY = 0;
-                    _rigidbody2D.AddForceY(jumpForce);
-                    CurrentJumpCount++;
-                }
-
-                OnJump?.Invoke();
+                _timeSinceWallJump = 0;
+                CurrentJumpCount = 1;
+            }
+            // Air jump (e.g double jump)
+            else
+            {
+                _rigidbody2D.linearVelocityY = 0;
+                _rigidbody2D.AddForceY(jumpForce);
+                CurrentJumpCount++;
             }
 
-            #endregion
-
-            _wantJump = false;
-            _wantMove = false;
-            _prevCollisionPlane = CurrentCollisionPlane;
+            OnJump?.Invoke();
         }
-
+        
         private CollisionPlane GetCollisionPlane()
         {
             if (_rigidbody2D.IsTouching(_groundFilter)) return CollisionPlane.Ground;
             if (_rigidbody2D.IsTouching(_leftWallFilter)) return CollisionPlane.LeftWall;
             if (_rigidbody2D.IsTouching(_rightWallFilter)) return CollisionPlane.RightWall;
-
+            
             return CollisionPlane.None;
         }
     }

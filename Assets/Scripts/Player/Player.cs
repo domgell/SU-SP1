@@ -68,7 +68,7 @@ namespace Player
             
             // Update animation
             _animator.SetFloat("movementSpeedX", Mathf.Abs(moveX));
-            _animator.SetBool("isGrounded", _playerMovement.CurrentCollisionPlane == PlayerMovement.CollisionPlane.Ground);
+            _animator.SetBool("isGrounded", _playerMovement.CurrentCollisionPlane is PlayerMovement.CollisionPlane.Ground);
             _animator.SetBool("isOnWall", _playerMovement.CurrentCollisionPlane is PlayerMovement.CollisionPlane.LeftWall or PlayerMovement.CollisionPlane.RightWall);
             _animator.SetInteger("jumpCount", _playerMovement.CurrentJumpCount);
             _animator.SetBool("isFalling", _rigidbody2D.linearVelocityY < 0);

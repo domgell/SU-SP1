@@ -1,21 +1,21 @@
-using System;
-using JetBrains.Annotations;
-using Player;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+namespace Game
 {
-    private Rigidbody2D _rigidbody2D;
-    
-    private void Start()
+    public class Platform : MonoBehaviour
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+        private Rigidbody2D _rigidbody2D;
 
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (!other.gameObject.CompareTag("Player")) return;
+        private void Start()
+        {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+        }
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
+            if (!other.gameObject.CompareTag("Player")) return;
         
-        other.rigidbody.AddForce(_rigidbody2D.linearVelocity * Time.deltaTime);
+            other.rigidbody.AddForce(_rigidbody2D.linearVelocity);
+        }
     }
 }
