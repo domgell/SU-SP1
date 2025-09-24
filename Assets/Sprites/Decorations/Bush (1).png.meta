@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 04467e119352d48ceba71068f0351023
+guid: 8e982a536ea664984b5a3fc3a5a9a673
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7452513508327950171
-    second: cloud6_0
+      213: 1186669752729523674
+    second: Bush (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cloud6_0
+      name: Bush (1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 79
-        height: 41
+        width: 145
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a8ff44037a539890800000000000000
-      internalID: -7452513508327950171
+      spriteID: ad5d4255ad5e77010800000000000000
+      internalID: 1186669752729523674
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cloud6_0: -7452513508327950171
+      Bush (1)_0: 1186669752729523674
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

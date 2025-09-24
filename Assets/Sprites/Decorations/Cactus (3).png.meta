@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4081ad91e6ed4498fafe5e44114377d4
+guid: 8f882676ae7ee40998cdc34780a45eb6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2370176797451463240
-    second: cloud4_0
+      213: 2627263968863618721
+    second: Cactus (3)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cloud4_0
+      name: Cactus (3)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 161
-        height: 54
+        width: 86
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b5580da2c07b1fd0800000000000000
-      internalID: -2370176797451463240
+      spriteID: 1a68c4be8aae57420800000000000000
+      internalID: 2627263968863618721
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cloud4_0: -2370176797451463240
+      Cactus (3)_0: 2627263968863618721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
