@@ -507,13 +507,13 @@ MonoBehaviour:
       - m_Target: {fileID: 2141315692}
         m_TargetAssemblyTypeName: SceneFader, Assembly-CSharp
         m_MethodName: PlayButtonClicked
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &179704576
@@ -723,7 +723,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 277797411}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2141315692}
+        m_TargetAssemblyTypeName: SceneFader, Assembly-CSharp
+        m_MethodName: QuitButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &277797411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3525,6 +3537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2141315693}
+  fadeDuration: 1
 --- !u!114 &2141315693
 MonoBehaviour:
   m_ObjectHideFlags: 0

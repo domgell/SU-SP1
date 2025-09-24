@@ -6,25 +6,35 @@ using System.Collections;
 public class SceneFader : MonoBehaviour
 {
     public Image image;
+    public float fadeDuration = 1f;
 
     private void Start()
     {
+        image.raycastTarget = false; 
         StartCoroutine(FadeOut());
     }
 
-    public void FadeAndLoad(string sceneName, float duration)
+    public void PlayButtonClicked(string sceneName)
     {
-               StartCoroutine(Fader(sceneName, duration));
+        StartCoroutine(FadeAndLoad(sceneName));
     }
 
-    IEnumerator Fader(string sceneName, float duration)
+    public void QuitButtonClicked()
     {
+        StartCoroutine(FadeAndQuit());
+    }
+
+    private IEnumerator FadeAndLoad(string sceneName)
+    {
+        image.raycastTarget = true; 
+
         float t = 0;
         Color c = image.color;
-        while (t < duration)
+
+        while (t < fadeDuration)
         {
             t += Time.deltaTime;
-            c.a = t/duration;
+            c.a = t / fadeDuration;
             image.color = c;
             yield return null;
         }
@@ -32,23 +42,45 @@ public class SceneFader : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    IEnumerator FadeOut()
+    private IEnumerator FadeAndQuit()
     {
+        image.raycastTarget = true; 
+
         float t = 0;
         Color c = image.color;
-        while (t < 1)
+
+        while (t < fadeDuration)
         {
             t += Time.deltaTime;
-            c.a = 1f - (t / 1f);
+            c.a = t / fadeDuration;
             image.color = c;
             yield return null;
         }
+
+        Application.Quit();
+
+        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
-    public void PlayButtonClicked()
+    private IEnumerator FadeOut()
     {
-        FadeAndLoad("Level1", 1); 
+        float t = 0;
+        Color c = image.color;
+
+        while (t < fadeDuration)
+        {
+            t += Time.deltaTime;
+            c.a = 1f - (t / fadeDuration);
+            image.color = c;
+            yield return null;
+        }
+
+        c.a = 0f;
+        image.color = c;
+
+        image.raycastTarget = false; 
     }
-
 }
-
