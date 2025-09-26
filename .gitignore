@@ -57,6 +57,7 @@ ExportedObj/
 *.idea
 .vsconfig
 UpgradeLog.htm
+.DS_Store
 
 # Unity3D generated meta files
 *.pidb.meta
