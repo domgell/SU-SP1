@@ -359,15 +359,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrain (16x16)_10
+      name: Bronze
       rect:
         serializedVersion: 2
         x: 192
         y: 160
-        width: 16
+        width: 48
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3320,9 +3320,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Bronze: 5587568460378422633
       Terrain (16x16)_0: -4874278423985981231
       Terrain (16x16)_1: 2492004042214043949
-      Terrain (16x16)_10: 5587568460378422633
       Terrain (16x16)_100: -1772195710
       Terrain (16x16)_101: 873972689
       Terrain (16x16)_102: 40525145
