@@ -1,4 +1,5 @@
 using System;
+using Game;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -34,16 +35,22 @@ namespace Player
             _playerMovement = GetComponent<PlayerMovement>();
             _audioSource = GetComponent<AudioSource>();
 
-            _health.OnDeath += Respawn;
-            _health.OnDamage += _ => _audioSource.PlayOneShot(damageSound);
+            _health.OnDeath += OnDeath;
+            _health.OnDamage += OnDamage;
             _playerMovement.OnJump += () => _audioSource.PlayOneShot(jumpSound);
             _playerMovement.OnLand += () => _audioSource.PlayOneShot(landSound);
         }
 
-        private void Respawn()
+        private void OnDamage(float amount)
+        {
+            _audioSource.PlayOneShot(damageSound);
+        }
+
+        private void OnDeath()
         {
             _audioSource.PlayOneShot(deathSound);
             
+            // Respawn
             _health.Reset();
             transform.position = respawnPoint;
             _rigidbody2D.linearVelocity = Vector2.zero;
@@ -61,7 +68,8 @@ namespace Player
             
             // Update animation
             _animator.SetFloat("movementSpeedX", Mathf.Abs(moveX));
-            _animator.SetBool("isGrounded", _playerMovement.IsGrounded);
+            _animator.SetBool("isGrounded", _playerMovement.CurrentCollisionPlane is PlayerMovement.CollisionPlane.Ground);
+            _animator.SetBool("isOnWall", _playerMovement.CurrentCollisionPlane is PlayerMovement.CollisionPlane.LeftWall or PlayerMovement.CollisionPlane.RightWall);
             _animator.SetInteger("jumpCount", _playerMovement.CurrentJumpCount);
             _animator.SetBool("isFalling", _rigidbody2D.linearVelocityY < 0);
 

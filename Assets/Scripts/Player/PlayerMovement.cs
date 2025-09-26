@@ -1,91 +1,220 @@
 using System;
 using UnityEngine;
-
-enum MovementState
-{
-    Idle,
-    Running,
-    Jumping,
-    DoubleJumping,
-    Falling,
-}
+using UnityEngine.Serialization;
 
 namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] private float movementSpeed = 250f;
-        [SerializeField] private float jumpForce = 100f;
+        public enum CollisionPlane
+        {
+            None,
+            Ground,
+            LeftWall,
+            RightWall,
+        }
+
+        [Header("Movement")] [Space] [SerializeField]
+        private float movementSpeed = 10f;
+
+        [SerializeField] private float movementAcceleration = 10f;
+        [SerializeField] private float movementDeceleration = 5f;
+
+        [Header("Jumping")] [Space] [SerializeField]
+        private float jumpForce = 400f;
+
+        /// <summary>
+        /// Multiplier for the horizontal force applied when performing a wall jump.
+        /// `Sideways force = jumpForce * wallJumpForceMultiplier`
+        /// </summary>
+        [SerializeField] private float wallJumpForceMultiplier = 0.75f;
+
+        /// <summary>
+        /// Amount of time to ignore player input after a wall jump.
+        /// Prevents the player from going back into the wall immediately after wall jump.
+        /// </summary>
+        [SerializeField] private float wallJumpTimeIgnoreInputTime = 0.25f;
+
         /// <summary>
         /// Maximum slope angle in degrees for the player to be considered grounded.
         /// </summary>
         [SerializeField] private float maxSlope = 45f;
+
         /// <summary>
         /// Maximum number of jumps in the air (e.g. 2 for double jump).
         /// </summary>
         [SerializeField] private int maxJumpCount = 2;
 
+        /// <summary>
+        /// Downward force applied when sliding down a wall.
+        /// </summary>
+        [SerializeField] private float wallSlideDownForce = 10f;
+
         private Rigidbody2D _rigidbody2D;
-        private ContactFilter2D _contactFilter;
+        private ContactFilter2D _groundFilter;
+        private ContactFilter2D _leftWallFilter;
+        private ContactFilter2D _rightWallFilter;
         private bool _wantJump;
+        private bool _wantMove;
         private bool _wasGrounded;
-        
+        private bool _wasOnWall;
+        private float _timeSinceWallJump;
+        private CollisionPlane _prevCollisionPlane;
+
         /// <summary>
         /// Times jumped in the air since the player was last grounded. 
         /// </summary>
+        [HideInInspector]
         public int CurrentJumpCount { get; private set; }
+
+        /// <summary>
+        /// Raw horizontal movement input in the range [-1, 1].
+        /// </summary>
+        [HideInInspector]
         public float MovementInputX { get; private set; }
-        public bool IsGrounded => _rigidbody2D.IsTouching(_contactFilter);
-        public event Action OnJump;
-        public event Action OnLand;
+
+        /// <summary>
+        /// The current collision plane the player is touching.
+        /// </summary>
+        [HideInInspector]
+        public CollisionPlane CurrentCollisionPlane { get; private set; }
         
+        /// <summary>
+        /// Invoked when the player jumps (from ground, wall or air)
+        /// </summary>
+        public event Action OnJump;
+
+        /// <summary>
+        /// Invoked when the player lands on the ground or hits a wall
+        /// </summary>
+        public event Action OnLand;
+
         private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            
-            _contactFilter.SetNormalAngle(maxSlope, maxSlope + 90);
-            _contactFilter.SetLayerMask(LayerMask.GetMask("Ground"));
+
+            var layerMask = LayerMask.GetMask("Ground");
+            _groundFilter.SetNormalAngle(maxSlope, maxSlope + 90);
+            _groundFilter.SetLayerMask(layerMask);
+
+            _leftWallFilter.SetNormalAngle(90 + maxSlope, 270 - maxSlope);
+            _leftWallFilter.SetLayerMask(layerMask);
+            _rightWallFilter.SetNormalAngle(270 + maxSlope, 450 - maxSlope);
+            _rightWallFilter.SetLayerMask(layerMask);
         }
 
         private void Update()
         {
-            if (Input.GetButtonDown("Jump")) _wantJump = true;
-            
-            MovementInputX = Input.GetAxis("Horizontal");
+            MovementInputX = Input.GetAxisRaw("Horizontal");
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.01f)
+            {
+                _wantMove = true;
+            }
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                _wantJump = true;
+            }
+
+            _timeSinceWallJump += Time.deltaTime;
         }
-        
+
         private void FixedUpdate()
         {
-            var isGrounded = IsGrounded;
-            
-            // Reset jump count when landing
-            if (isGrounded && !_wasGrounded)
+            CurrentCollisionPlane = GetCollisionPlane();
+
+            // Slide down wall
+            if (CurrentCollisionPlane is CollisionPlane.LeftWall or CollisionPlane.RightWall)
             {
-                CurrentJumpCount = 0;
+                _rigidbody2D.AddForceY(-wallSlideDownForce);
+            }
+
+            UpdateMovement();
+            UpdateJump();
+
+            _wantJump = false;
+            _wantMove = false;
+            _prevCollisionPlane = CurrentCollisionPlane;
+        }
+
+        private void UpdateMovement()
+        {
+            var targetSpeed = MovementInputX * movementSpeed;
+            var currentVelocityX = _rigidbody2D.linearVelocityX;
+
+            // Acceleration
+            if (_wantMove)
+            {
+                if (Mathf.Abs(currentVelocityX) < Mathf.Abs(targetSpeed)
+                    && _timeSinceWallJump > wallJumpTimeIgnoreInputTime)
+                {
+                    var targetSpeedDifference = targetSpeed - currentVelocityX;
+                    var acceleration = targetSpeedDifference * movementAcceleration;
+                    _rigidbody2D.AddForceX(acceleration);
+                }
+            }
+            // Deceleration
+            else
+            {
+                var deceleration = -currentVelocityX * movementDeceleration;
+                _rigidbody2D.AddForceX(deceleration);
+            }
+        }
+
+        private void UpdateJump()
+        {
+            // Reset jump count upon hitting ground/wall
+            if (CurrentCollisionPlane is not CollisionPlane.None && _prevCollisionPlane is CollisionPlane.None)
+            {
                 OnLand?.Invoke();
-            };
-            
-            // Jump
-            var canJump = isGrounded || (CurrentJumpCount < maxJumpCount);
-            if (_wantJump && canJump)
+                CurrentJumpCount = 0;
+
+                // Reset Y velocity when landing on wall to prevent slipping off immediately
+                if (CurrentCollisionPlane is CollisionPlane.LeftWall or CollisionPlane.RightWall)
+                    _rigidbody2D.linearVelocityY = 0;
+            }
+
+            if (!_wantJump || CurrentJumpCount >= maxJumpCount) return;
+
+            // Jump from ground
+            if (CurrentCollisionPlane == CollisionPlane.Ground)
             {
                 _rigidbody2D.linearVelocityY = 0;
                 _rigidbody2D.AddForceY(jumpForce);
-
-                CurrentJumpCount++;
-                OnJump?.Invoke();
+                CurrentJumpCount = 1;
             }
-            
-            // Apply movement
-            //_rigidbody2D.linearVelocityX = MovementInputX * movementSpeed * Time.deltaTime;
-            if (MovementInputX != 0)
+            // Wall jump
+            else if (CurrentCollisionPlane is CollisionPlane.LeftWall or CollisionPlane.RightWall)
             {
-                _rigidbody2D.linearVelocityX = MovementInputX * movementSpeed * Time.deltaTime;
+                _rigidbody2D.linearVelocity = Vector2.zero;
+                _rigidbody2D.AddForceY(jumpForce);
+
+                // Apply sideways force away from wall
+                var wallJumpSign = CurrentCollisionPlane == CollisionPlane.LeftWall ? -1 : 1;
+                var wallJumpForce = jumpForce * wallJumpSign * wallJumpForceMultiplier;
+                _rigidbody2D.AddForceX(wallJumpForce);
+
+                _timeSinceWallJump = 0;
+                CurrentJumpCount = 1;
+            }
+            // Air jump (e.g double jump)
+            else
+            {
+                _rigidbody2D.linearVelocityY = 0;
+                _rigidbody2D.AddForceY(jumpForce);
+                CurrentJumpCount++;
             }
 
-            _wantJump = false;
-            MovementInputX = 0;
-            _wasGrounded = isGrounded;
+            OnJump?.Invoke();
+        }
+        
+        private CollisionPlane GetCollisionPlane()
+        {
+            if (_rigidbody2D.IsTouching(_groundFilter)) return CollisionPlane.Ground;
+            if (_rigidbody2D.IsTouching(_leftWallFilter)) return CollisionPlane.LeftWall;
+            if (_rigidbody2D.IsTouching(_rightWallFilter)) return CollisionPlane.RightWall;
+            
+            return CollisionPlane.None;
         }
     }
 }
