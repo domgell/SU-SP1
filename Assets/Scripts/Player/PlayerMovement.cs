@@ -33,12 +33,12 @@ namespace Player
         /// Amount of time to ignore player input after a wall jump.
         /// Prevents the player from going back into the wall immediately after wall jump.
         /// </summary>
-        [SerializeField] private float wallJumpTimeIgnoreInputTime = 0.25f;
+        [FormerlySerializedAs("wallJumpTimeIgnoreInputTime")] [SerializeField] private float wallJumpIgnoreInputTime = 0.25f;
 
         /// <summary>
         /// Maximum slope angle in degrees for the player to be considered grounded.
         /// </summary>
-        [SerializeField] private float maxSlope = 45f;
+        [FormerlySerializedAs("maxSlope")] [SerializeField] private float maxSlopeDegrees = 45f;
 
         /// <summary>
         /// Maximum number of jumps in the air (e.g. 2 for double jump).
@@ -94,12 +94,12 @@ namespace Player
             _rigidbody2D = GetComponent<Rigidbody2D>();
 
             var layerMask = LayerMask.GetMask("Ground");
-            _groundFilter.SetNormalAngle(maxSlope, maxSlope + 90);
+            _groundFilter.SetNormalAngle(maxSlopeDegrees, maxSlopeDegrees + 90);
             _groundFilter.SetLayerMask(layerMask);
 
-            _leftWallFilter.SetNormalAngle(90 + maxSlope, 270 - maxSlope);
+            _leftWallFilter.SetNormalAngle(90 + maxSlopeDegrees, 270 - maxSlopeDegrees);
             _leftWallFilter.SetLayerMask(layerMask);
-            _rightWallFilter.SetNormalAngle(270 + maxSlope, 450 - maxSlope);
+            _rightWallFilter.SetNormalAngle(270 + maxSlopeDegrees, 450 - maxSlopeDegrees);
             _rightWallFilter.SetLayerMask(layerMask);
         }
 
@@ -146,7 +146,7 @@ namespace Player
             if (_wantMove)
             {
                 if (Mathf.Abs(currentVelocityX) < Mathf.Abs(targetSpeed)
-                    && _timeSinceWallJump > wallJumpTimeIgnoreInputTime)
+                    && _timeSinceWallJump > wallJumpIgnoreInputTime)
                 {
                     var targetSpeedDifference = targetSpeed - currentVelocityX;
                     var acceleration = targetSpeedDifference * movementAcceleration;
