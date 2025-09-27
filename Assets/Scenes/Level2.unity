@@ -1643,7 +1643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183748707}
   - component: {fileID: 183748708}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PurpleGrass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1715,7 +1715,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -3.275114, y: 0.72378206}
+  m_Offset: {x: -3.275114, y: -1.7484641}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1725,7 +1725,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.635899, y: 1.2171335}
+  m_Size: {x: 8.635899, y: 4.9878607}
   m_EdgeRadius: 0
 --- !u!1 &184397587
 GameObject:
@@ -3039,7 +3039,7 @@ GameObject:
   - component: {fileID: 408270566}
   - component: {fileID: 408270565}
   - component: {fileID: 408270564}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FallingPlatformOff (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3259,7 +3259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427028167}
   - component: {fileID: 427028168}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandMidMid (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4172,7 +4172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 546325279}
   - component: {fileID: 546325280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandMidLeft (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4840,7 +4840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647204053}
   - component: {fileID: 647204054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandMidMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5014,7 +5014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662454368}
   - component: {fileID: 662454369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandMidMid (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5547,7 +5547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 733702749}
   - component: {fileID: 733702750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PurpleGrassRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5634,7 +5634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 784930627}
   - component: {fileID: 784930628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandBottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6743,7 +6743,7 @@ GameObject:
   - component: {fileID: 980092839}
   - component: {fileID: 980092838}
   - component: {fileID: 980092840}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FallingPlatformOff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7641,7 +7641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1096465250}
   - component: {fileID: 1096465251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PurpleGrassMid (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8558,7 +8558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1269223050}
   - component: {fileID: 1269223051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandBottomMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9865,7 +9865,7 @@ GameObject:
   - component: {fileID: 1421690553}
   - component: {fileID: 1421690552}
   - component: {fileID: 1421690551}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FallingPlatformOff (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10086,7 +10086,7 @@ GameObject:
   - component: {fileID: 1433479087}
   - component: {fileID: 1433479089}
   - component: {fileID: 1433479088}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FallingPlatformOff (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10384,7 +10384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1470298537}
   - component: {fileID: 1470298538}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandBottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10937,7 +10937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577748316}
   - component: {fileID: 1577748317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandBottomMid (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11522,7 +11522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1692182099}
   - component: {fileID: 1692182100}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandMidRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11918,7 +11918,8 @@ GameObject:
   - component: {fileID: 1757608232}
   - component: {fileID: 1757608231}
   - component: {fileID: 1757608233}
-  m_Layer: 5
+  - component: {fileID: 1757608234}
+  m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12041,6 +12042,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7656498, y: 0.7599907}
   m_EdgeRadius: 0
+--- !u!50 &1757608234
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757608230}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1767007342
 GameObject:
   m_ObjectHideFlags: 0
@@ -12218,7 +12246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1802509633}
   - component: {fileID: 1802509634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandMidLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12615,7 +12643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860621451}
   - component: {fileID: 1860621452}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandMidRight (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13500,7 +13528,7 @@ GameObject:
   - component: {fileID: 1986027364}
   - component: {fileID: 1986027366}
   - component: {fileID: 1986027365}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FallingPlatformOff (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14242,7 +14270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2062197994}
   - component: {fileID: 2062197995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PurpleGrassLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14588,7 +14616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2096016304}
   - component: {fileID: 2096016305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PurpleGrassMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14983,7 +15011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2145814958}
   - component: {fileID: 2145814959}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SandMidMid (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
