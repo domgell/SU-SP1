@@ -944,7 +944,7 @@ SpriteRenderer:
   m_Size: {x: 6.4, y: 3.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!4 &144338377 stripped
@@ -1375,7 +1375,7 @@ SpriteRenderer:
   m_Size: {x: 6.4, y: 3.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!1001 &301802932
@@ -2529,7 +2529,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.31, y: 0.3}
+    oldSize: {x: 0.040364582, y: 0.0390625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4241,7 +4241,7 @@ Transform:
   m_GameObject: {fileID: 1231892595}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6292,7 +6292,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4387947566917154351, guid: 404af30d2e842a947add4974857eca33, type: 3}
       propertyPath: movementSpeed
-      value: 250
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 292905511823901403, guid: 404af30d2e842a947add4974857eca33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7204,7 +7204,7 @@ Transform:
   m_GameObject: {fileID: 1826826234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.27591, y: -0.2307607, z: 0}
+  m_LocalPosition: {x: 8.27591, y: -1.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7791,7 +7791,7 @@ SpriteRenderer:
   m_Size: {x: 6.4, y: 3.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!1 &2088953692
