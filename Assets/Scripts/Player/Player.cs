@@ -68,9 +68,9 @@ namespace Player
             
             // Update animation
             _animator.SetFloat("movementSpeedX", Mathf.Abs(moveX));
-            _animator.SetBool("isGrounded", _playerMovement.CurrentCollisionPlane is PlayerMovement.CollisionPlane.Ground);
-            _animator.SetBool("isOnWall", _playerMovement.CurrentCollisionPlane is PlayerMovement.CollisionPlane.LeftWall or PlayerMovement.CollisionPlane.RightWall);
-            _animator.SetInteger("jumpCount", _playerMovement.CurrentJumpCount);
+            _animator.SetBool("isGrounded", _playerMovement.currentCollisionPlane is PlayerMovement.CollisionPlane.Ground);
+            _animator.SetBool("isOnWall", _playerMovement.currentCollisionPlane is PlayerMovement.CollisionPlane.LeftWall or PlayerMovement.CollisionPlane.RightWall);
+            _animator.SetInteger("jumpCount", _playerMovement.currentJumpCount);
             _animator.SetBool("isFalling", _rigidbody2D.linearVelocityY < 0);
 
             healthBar.value = _health.CurrentHealth / _health.MaxHealth;

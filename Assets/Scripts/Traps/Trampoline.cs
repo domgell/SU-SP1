@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Trampoline : MonoBehaviour
@@ -7,20 +8,24 @@ public class Trampoline : MonoBehaviour
     [SerializeField] private AudioClip bounceSound;
     
     private AudioSource _audioSource;
+    private Animator _animator;
     
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
+        // Bounce player
         var playerRigidBody = other.GetComponent<Rigidbody2D>();
-        
         playerRigidBody.linearVelocityY = 0;
         playerRigidBody.AddForceY(bounceForce);
+        
         _audioSource.PlayOneShot(bounceSound);
+        _animator.Play("Jump", 0, 0);
     }
 }
