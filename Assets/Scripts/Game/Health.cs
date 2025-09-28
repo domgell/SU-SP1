@@ -23,6 +23,18 @@ namespace Game
         }
 
         /// <summary>
+        /// Increase health by "amount", up to max health.
+        /// Does nothing if not alive
+        /// </summary>
+        /// <param name="amount"></param>
+        public void Heal(float amount)
+        {
+            if (!IsAlive) return;
+        
+            CurrentHealth = MathF.Min(maxHealth, CurrentHealth + amount);
+        }
+        
+        /// <summary>
         /// Tries to damage the entity. Returns true if damage was applied, false if still in cooldown.
         /// </summary>
         /// <param name="amount"></param>
