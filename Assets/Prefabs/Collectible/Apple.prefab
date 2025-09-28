@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3566518496216971071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2296472, y: 1.1695051, z: -4.398377}
+  m_LocalPosition: {x: -1.2296472, y: 1.1695051, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1565695715
-  m_SortingLayer: -1
+  m_SortingLayerID: 419022023
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7293598183456022363, guid: 82371441996c5994e90b1a78830cb3a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -128,6 +128,7 @@ MonoBehaviour:
   gameState: {fileID: 0}
   pickupParticleEffect: {fileID: 3866804354942040350, guid: 5b39ce38dd88c2440a5214d696e0b794, type: 3}
   pickupSound: {fileID: 8300000, guid: ff555ed58600d4f4590a190587b61695, type: 3}
+  healAmount: 25
 --- !u!58 &7451541433600981806
 CircleCollider2D:
   m_ObjectHideFlags: 0
