@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 199b1e29a0cf0458a9e88ca153250ab3
+guid: 669ef922a468d184489d2a28b0f84bb0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6353259541176127035
-    second: Sand Mud Ice (16x6)_0
-  - first:
-      213: 6167641977362757515
-    second: Sand Mud Ice (16x6)_1
-  - first:
-      213: 3626576778737192768
-    second: Sand Mud Ice (16x6)_2
+      213: 2208703988740019828
+    second: Bullet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,8 +49,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -81,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,67 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sand
+      name: Bullet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 49
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c1f55abb10b4d7a0800000000000000
-      internalID: -6353259541176127035
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sand Mud Ice (16x6)_1
-      rect:
-        serializedVersion: 2
-        x: 63
         y: 0
-        width: 50
-        height: 80
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b87be7a63bdd79550800000000000000
-      internalID: 6167641977362757515
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sand Mud Ice (16x6)_2
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 0
-        width: 49
-        height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04f8f47ad50345230800000000000000
-      internalID: 3626576778737192768
+      spriteID: 47656d65394e6ae10800000000000000
+      internalID: 2208703988740019828
       vertices: []
       indices: 
       edges: []
@@ -175,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 9d4f23c04dd86a34e83224e4612a4242
     internalID: 0
     vertices: []
     indices: 
@@ -185,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sand: -6353259541176127035
-      Sand Mud Ice (16x6)_1: 6167641977362757515
-      Sand Mud Ice (16x6)_2: 3626576778737192768
+      Bullet_0: 2208703988740019828
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
