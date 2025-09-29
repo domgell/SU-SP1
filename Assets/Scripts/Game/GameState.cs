@@ -1,13 +1,18 @@
 using System;
 using System.Linq;
+using Audio;
+using Scenes;
 using TMPro;
 using UnityEngine;
 
 namespace Game
 {
+    /// <summary>
+    /// Global access to Score and Loading levels
+    /// </summary>
     public class GameState : MonoBehaviour
     {
-        private enum Levels
+        public enum Levels
         {
             Tutorial,
             Level1,
@@ -15,19 +20,31 @@ namespace Game
             Level3,
             MainMenu,
         }
-        
+
         [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private AudioSource levelMusic;
+        
         public int score;
         public static GameState Instance { get; private set; }
 
+        private AudioSource _audioSource;
+        private AudioFader _audioFader;
+        private ScreenFader _screenFader;
+
         private Levels _currentLevel;
+
+        private void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+            _audioFader = GetComponent<AudioFader>();
+            _screenFader = GetComponent<ScreenFader>();
+        }
 
         private void Awake()
         {
             Instance = this;
-            DontDestroyOnLoad(this);
-            
-            // TEMP: Required on first load
+
+            // TEMP
             var currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             var ok = Enum.TryParse<Levels>(currentScene.name, out var currentLevel);
             Debug.Assert(ok);
@@ -36,30 +53,40 @@ namespace Game
 
         private void FixedUpdate()
         {
-            scoreText.text = $"Score: {score}";
+            if (_currentLevel == Levels.MainMenu) return;
+
+            // TEMP: No score text set in MainMenu
+            if (scoreText) scoreText.text = $"Score: {score}";
         }
 
         public void LoadNextLevel()
         {
             score = 0;
-            
+
             // TEMP: Should never happen since GameState is not present in MainMenu
             if (_currentLevel is Levels.MainMenu) return;
 
             // Load next scene
-            // TODO: Level fade transition
             _currentLevel++;
-            var nextLevelName = _currentLevel.ToString();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(nextLevelName);
+            LoadLevel(_currentLevel);
         }
 
-        public void ReloadCurrentLevel()
+        public void LoadLevel(Levels level)
         {
             score = 0;
-            
-            // TODO: Level fade transition
+            _currentLevel = level;
             var nextLevelName = _currentLevel.ToString();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(nextLevelName);
+
+            StartCoroutine(_audioFader.FadeOut(levelMusic, 0.99f));
+            
+            // Fade out, level transition, fade back in
+            StartCoroutine(_screenFader.FadeOut(onComplete: () =>
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(nextLevelName);
+                StartCoroutine(_screenFader.FadeIn());
+            }));
         }
+
+        public void ReloadCurrentLevel() => LoadLevel(_currentLevel);
     }
 }

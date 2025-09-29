@@ -7,6 +7,7 @@ namespace Environment
     {
         [SerializeField] private Bridge bridge;
         [SerializeField] private Color pressedColor = new(0.5f, 0.5f, 0.5f, 1f);
+        [SerializeField] private AudioClip activateSound;
         
         private SpriteRenderer _spriteRenderer;
         private AudioSource _audioSource;
@@ -22,10 +23,9 @@ namespace Environment
             if (!other.gameObject.CompareTag("Player")) return;
 
             _spriteRenderer.color = pressedColor;
+            _audioSource.PlayOneShot(activateSound);
             
             bridge.Activate();
-            
-            // TODO: Play press sound
         }
     }
 }

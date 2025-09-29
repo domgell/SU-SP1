@@ -10,10 +10,7 @@ namespace Player
     {
         [SerializeField] private Slider healthBar;
         [Header("Sound")] [SerializeField] private AudioClip jumpSound;
-        [SerializeField] private AudioClip landSound;
-        [SerializeField] private AudioClip moveSound;
         [SerializeField] private AudioClip damageSound;
-        [SerializeField] private AudioClip deathSound;
 
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
@@ -33,29 +30,9 @@ namespace Player
             _playerMovement = GetComponent<PlayerMovement>();
             _audioSource = GetComponent<AudioSource>();
 
-            _health.OnDeath += OnDeath;
-            _health.OnDamage += OnDamage;
+            _health.OnDeath += () => GameState.Instance.ReloadCurrentLevel();
+            _health.OnDamage += _ => _audioSource.PlayOneShot(damageSound);
             _playerMovement.OnJump += () => _audioSource.PlayOneShot(jumpSound);
-            _playerMovement.OnLand += () => _audioSource.PlayOneShot(landSound);
-        }
-
-        private void OnDamage(float amount)
-        {
-            _audioSource.PlayOneShot(damageSound);
-        }
-
-        private void OnDeath()
-        {
-            _audioSource.PlayOneShot(deathSound);
-
-            /*// Respawn
-            _health.Reset();
-            transform.position = respawnPoint;
-            _rigidbody2D.linearVelocity = Vector2.zero;*/
-
-            // Reset level
-            // TODO: Wait for sound to finish playing
-            GameState.Instance.ReloadCurrentLevel();
         }
 
         private void Update()
@@ -70,8 +47,7 @@ namespace Player
 
             // Update animation
             _animator.SetFloat("movementSpeedX", Mathf.Abs(moveX));
-            _animator.SetBool("isGrounded",
-                _playerMovement.currentCollisionPlane is PlayerMovement.CollisionPlane.Ground);
+            _animator.SetBool("isGrounded", _playerMovement.currentCollisionPlane is PlayerMovement.CollisionPlane.Ground);
             _animator.SetBool("isOnWall", _playerMovement.currentCollisionPlane.IsWall());
             _animator.SetInteger("jumpCount", _playerMovement.currentJumpCount);
             _animator.SetBool("isFalling", _rigidbody2D.linearVelocityY < 0);

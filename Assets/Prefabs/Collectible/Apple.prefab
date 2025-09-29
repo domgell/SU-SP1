@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupParticleEffect: {fileID: 3866804354942040350, guid: 5b39ce38dd88c2440a5214d696e0b794, type: 3}
-  pickupSound: {fileID: 8300000, guid: ff555ed58600d4f4590a190587b61695, type: 3}
+  pickupSound: {fileID: 8300000, guid: 506c56b0f02f6a149ab3998689f5adc5, type: 3}
   healAmount: 25
 --- !u!58 &7451541433600981806
 CircleCollider2D:
@@ -177,7 +177,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1.69
   Loop: 0
   Mute: 0

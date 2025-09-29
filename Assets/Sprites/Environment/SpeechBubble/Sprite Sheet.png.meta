@@ -163,7 +163,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -177,7 +177,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -230,9 +230,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 135
-        width: 33
-        height: 33
+        y: 136
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,10 +251,10 @@ TextureImporter:
       name: Sprite Sheet_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 135
-        width: 34
-        height: 33
+        x: 34
+        y: 136
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -273,10 +273,10 @@ TextureImporter:
       name: Sprite Sheet_2
       rect:
         serializedVersion: 2
-        x: 67
-        y: 135
-        width: 34
-        height: 33
+        x: 68
+        y: 136
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -317,10 +317,10 @@ TextureImporter:
       name: Sprite Sheet_4
       rect:
         serializedVersion: 2
-        x: 135
-        y: 135
-        width: 34
-        height: 33
+        x: 136
+        y: 136
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,10 +339,10 @@ TextureImporter:
       name: Sprite Sheet_5
       rect:
         serializedVersion: 2
-        x: 169
-        y: 135
-        width: 34
-        height: 33
+        x: 170
+        y: 136
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -361,10 +361,10 @@ TextureImporter:
       name: Sprite Sheet_6
       rect:
         serializedVersion: 2
-        x: 203
-        y: 135
-        width: 34
-        height: 33
+        x: 204
+        y: 136
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,10 +383,10 @@ TextureImporter:
       name: Sprite Sheet_7
       rect:
         serializedVersion: 2
-        x: 251
-        y: 138
-        width: 20
-        height: 20
+        x: 238
+        y: 136
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,10 +405,10 @@ TextureImporter:
       name: Sprite Sheet_8
       rect:
         serializedVersion: 2
-        x: 271
-        y: 135
-        width: 33
-        height: 33
+        x: 272
+        y: 136
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -428,9 +428,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 101
-        width: 33
-        height: 34
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -449,10 +449,10 @@ TextureImporter:
       name: Sprite Sheet_10
       rect:
         serializedVersion: 2
-        x: 33
-        y: 101
-        width: 34
-        height: 34
+        x: 34
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -471,10 +471,10 @@ TextureImporter:
       name: Sprite Sheet_11
       rect:
         serializedVersion: 2
-        x: 67
-        y: 101
-        width: 34
-        height: 34
+        x: 68
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -493,10 +493,10 @@ TextureImporter:
       name: Sprite Sheet_12
       rect:
         serializedVersion: 2
-        x: 108
-        y: 108
-        width: 20
-        height: 20
+        x: 102
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -515,10 +515,10 @@ TextureImporter:
       name: Sprite Sheet_13
       rect:
         serializedVersion: 2
-        x: 135
-        y: 101
-        width: 34
-        height: 34
+        x: 136
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -537,10 +537,10 @@ TextureImporter:
       name: Sprite Sheet_14
       rect:
         serializedVersion: 2
-        x: 169
-        y: 101
-        width: 34
-        height: 34
+        x: 170
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -559,10 +559,10 @@ TextureImporter:
       name: Sprite Sheet_15
       rect:
         serializedVersion: 2
-        x: 203
-        y: 101
-        width: 34
-        height: 34
+        x: 204
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -581,10 +581,10 @@ TextureImporter:
       name: Sprite Sheet_16
       rect:
         serializedVersion: 2
-        x: 251
-        y: 112
-        width: 20
-        height: 20
+        x: 238
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -603,10 +603,10 @@ TextureImporter:
       name: Sprite Sheet_17
       rect:
         serializedVersion: 2
-        x: 271
-        y: 101
-        width: 33
-        height: 34
+        x: 272
+        y: 102
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -626,9 +626,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 67
-        width: 33
-        height: 34
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -647,10 +647,10 @@ TextureImporter:
       name: Sprite Sheet_19
       rect:
         serializedVersion: 2
-        x: 33
-        y: 67
-        width: 34
-        height: 34
+        x: 34
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -669,10 +669,10 @@ TextureImporter:
       name: Sprite Sheet_20
       rect:
         serializedVersion: 2
-        x: 67
-        y: 67
-        width: 34
-        height: 34
+        x: 68
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -691,10 +691,10 @@ TextureImporter:
       name: Sprite Sheet_21
       rect:
         serializedVersion: 2
-        x: 111
-        y: 77
-        width: 14
-        height: 14
+        x: 102
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -713,10 +713,10 @@ TextureImporter:
       name: Sprite Sheet_22
       rect:
         serializedVersion: 2
-        x: 135
-        y: 67
-        width: 34
-        height: 34
+        x: 136
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -735,10 +735,10 @@ TextureImporter:
       name: Sprite Sheet_23
       rect:
         serializedVersion: 2
-        x: 169
-        y: 67
-        width: 34
-        height: 34
+        x: 170
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -757,10 +757,10 @@ TextureImporter:
       name: Sprite Sheet_24
       rect:
         serializedVersion: 2
-        x: 203
-        y: 67
-        width: 34
-        height: 34
+        x: 204
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -779,10 +779,10 @@ TextureImporter:
       name: Sprite Sheet_25
       rect:
         serializedVersion: 2
-        x: 237
-        y: 67
-        width: 34
-        height: 34
+        x: 238
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -801,10 +801,10 @@ TextureImporter:
       name: Sprite Sheet_26
       rect:
         serializedVersion: 2
-        x: 271
-        y: 70
-        width: 20
-        height: 20
+        x: 272
+        y: 68
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -824,9 +824,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 33
-        width: 33
-        height: 34
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -845,10 +845,10 @@ TextureImporter:
       name: Sprite Sheet_28
       rect:
         serializedVersion: 2
-        x: 33
-        y: 33
-        width: 34
-        height: 34
+        x: 34
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -867,10 +867,10 @@ TextureImporter:
       name: Sprite Sheet_29
       rect:
         serializedVersion: 2
-        x: 78
-        y: 33
-        width: 20
-        height: 20
+        x: 68
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -889,10 +889,10 @@ TextureImporter:
       name: Sprite Sheet_30
       rect:
         serializedVersion: 2
-        x: 104
-        y: 33
-        width: 20
-        height: 20
+        x: 102
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -911,10 +911,10 @@ TextureImporter:
       name: Sprite Sheet_31
       rect:
         serializedVersion: 2
-        x: 148
-        y: 46
-        width: 8
-        height: 8
+        x: 136
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -933,10 +933,10 @@ TextureImporter:
       name: Sprite Sheet_32
       rect:
         serializedVersion: 2
-        x: 169
-        y: 33
-        width: 34
-        height: 34
+        x: 170
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -955,10 +955,10 @@ TextureImporter:
       name: Sprite Sheet_33
       rect:
         serializedVersion: 2
-        x: 203
-        y: 33
-        width: 34
-        height: 34
+        x: 204
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -977,10 +977,10 @@ TextureImporter:
       name: Sprite Sheet_34
       rect:
         serializedVersion: 2
-        x: 237
-        y: 33
-        width: 34
-        height: 34
+        x: 238
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -999,10 +999,10 @@ TextureImporter:
       name: Sprite Sheet_35
       rect:
         serializedVersion: 2
-        x: 271
-        y: 44
-        width: 20
-        height: 20
+        x: 272
+        y: 34
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1021,10 +1021,10 @@ TextureImporter:
       name: Sprite Sheet_36
       rect:
         serializedVersion: 2
-        x: 10
-        y: 13
-        width: 20
-        height: 20
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1043,10 +1043,10 @@ TextureImporter:
       name: Sprite Sheet_37
       rect:
         serializedVersion: 2
-        x: 36
-        y: 13
-        width: 20
-        height: 20
+        x: 34
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1065,10 +1065,10 @@ TextureImporter:
       name: Sprite Sheet_38
       rect:
         serializedVersion: 2
-        x: 67
+        x: 68
         y: 0
-        width: 34
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1087,10 +1087,10 @@ TextureImporter:
       name: Sprite Sheet_39
       rect:
         serializedVersion: 2
-        x: 101
+        x: 102
         y: 0
-        width: 34
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1109,10 +1109,10 @@ TextureImporter:
       name: Sprite Sheet_40
       rect:
         serializedVersion: 2
-        x: 135
+        x: 136
         y: 0
-        width: 34
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1131,10 +1131,10 @@ TextureImporter:
       name: Sprite Sheet_41
       rect:
         serializedVersion: 2
-        x: 169
+        x: 170
         y: 0
-        width: 34
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1153,10 +1153,10 @@ TextureImporter:
       name: Sprite Sheet_42
       rect:
         serializedVersion: 2
-        x: 203
+        x: 204
         y: 0
-        width: 34
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1175,7 +1175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2d74b4170c182c04b823f1528fe31938
     internalID: 0
     vertices: []
     indices: 
