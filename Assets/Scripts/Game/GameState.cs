@@ -14,7 +14,6 @@ namespace Game
     {
         public enum Levels
         {
-            Tutorial,
             Level1,
             Level2,
             Level3,
@@ -51,12 +50,14 @@ namespace Game
             _currentLevel = currentLevel;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (_currentLevel == Levels.MainMenu) return;
 
             // TEMP: No score text set in MainMenu
             if (scoreText) scoreText.text = $"Score: {score}";
+
+            if (Input.GetKeyDown(KeyCode.Escape)) LoadLevel(Levels.MainMenu);
         }
 
         public void LoadNextLevel()
