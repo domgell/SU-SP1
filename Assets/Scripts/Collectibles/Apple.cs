@@ -7,7 +7,6 @@ namespace Collectibles
 {
     public class Apple : MonoBehaviour
     {
-        [SerializeField] private GameState gameState;
         [SerializeField] private ParticleSystem pickupParticleEffect;
         [SerializeField] private AudioClip pickupSound;
         /// <summary>
@@ -29,7 +28,7 @@ namespace Collectibles
         {
             if (!other.CompareTag("Player") || !_active) return;
 
-            gameState.score++;
+            GameState.Instance.score++;
 
             var playerHealth = other.GetComponent<Health>();
             playerHealth.Heal(healAmount);

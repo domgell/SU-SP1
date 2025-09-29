@@ -1,52 +1,41 @@
+using Game;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+namespace Environment
 {
-    public bool locked;
-    private Collider2D doorCollider;
-    private SpriteRenderer spriteRenderer;
-
-    [Header("Door Sprites")]
-    public Sprite lockedSprite;
-    public Sprite unlockedSprite;
-
-    void Start()
+    public class Door : MonoBehaviour
     {
-        locked = true;
-        doorCollider = GetComponent<Collider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        [SerializeField] private bool lockedByDefault;
+        [SerializeField] private Sprite lockedSprite;
+        [SerializeField] private Sprite unlockedSprite;
 
-        UpdateDoorState();
-    }
+        private bool _locked = true;
 
-    void Update()
-    {
-        UpdateDoorState();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Key"))
+        public bool Locked
         {
-            locked = false;
-            UpdateDoorState();
-
-
-            Destroy(other.gameObject);
+            get => _locked;
+            set
+            {
+                _locked = value;
+                _spriteRenderer.sprite = value ? lockedSprite : unlockedSprite;
+            }
         }
-    }
 
-    private void UpdateDoorState()
-    {
-        if (doorCollider != null)
-            doorCollider.enabled = locked;
+        private SpriteRenderer _spriteRenderer;
 
-        if (spriteRenderer != null)
+        public void Start()
         {
-            if (locked && lockedSprite != null)
-                spriteRenderer.sprite = lockedSprite;
-            else if (!locked && unlockedSprite != null)
-                spriteRenderer.sprite = unlockedSprite;
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            Locked = lockedByDefault;
+        }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.gameObject.CompareTag("Player") || Locked) return;
+        
+            // TODO: Play unlock sound
+        
+            GameState.Instance.NextLevel();
         }
     }
 }

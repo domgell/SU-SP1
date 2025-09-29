@@ -52,7 +52,9 @@ namespace Enemy
             var particles = Instantiate(deathParticleSystem, transform.position, Quaternion.identity);
             Destroy(particles.gameObject, 5f);
 
+            // TEMP
             _spriteRenderer.enabled = false;
+            _rigidbody2D.simulated = false;
             Destroy(gameObject, 3f);
             _active = false;
         }

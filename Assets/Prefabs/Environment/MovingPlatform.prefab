@@ -126,7 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathBegin: {x: 35.1, y: -1.68}
   pathEnd: {x: 35, y: 6.37}
-  movementSpeed: 75
+  movementSpeed: 2
+  movingToEnd: 1
 --- !u!114 &2592852852025840008
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,27 +1,21 @@
+using System;
+using Environment;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+namespace Collectibles
 {
-    [SerializeField] GameObject player;
-
-    public bool isPickedUp;
-    private Vector2 vel;
-    public float smoothTime;
-
-    private void Update()
+    public class Key : MonoBehaviour
     {
-        if (isPickedUp)
+        [SerializeField] private Door targetDoor;
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            Vector3 offset = new Vector3(0,1.3f,0);
-            transform.position = Vector2.SmoothDamp(transform.position, player.transform.position + offset, ref vel, smoothTime);
+            if (!other.gameObject.CompareTag("Player")) return;
+
+            // TODO: Play pickup sound
+            targetDoor.Locked = false;
+
+            Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-       if(other.gameObject.CompareTag("Player") && !isPickedUp)
-        {
-            isPickedUp = true;
-        }
-    }
-
 }
