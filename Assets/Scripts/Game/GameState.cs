@@ -39,7 +39,7 @@ namespace Game
             scoreText.text = $"Score: {score}";
         }
 
-        public void NextLevel()
+        public void LoadNextLevel()
         {
             score = 0;
             

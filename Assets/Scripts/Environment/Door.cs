@@ -35,7 +35,7 @@ namespace Environment
         
             // TODO: Play unlock sound
         
-            GameState.Instance.NextLevel();
+            GameState.Instance.LoadNextLevel();
         }
     }
 }

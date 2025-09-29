@@ -1,16 +1,18 @@
+using Game;
 using UnityEngine;
 
-public class Level1 : MonoBehaviour
+namespace Scenes
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Level1 : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private int applesToCollect = 10;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void FixedUpdate()
+        {
+            if (GameState.Instance.score >= applesToCollect)
+            {
+                GameState.Instance.LoadNextLevel();
+            }
+        }
     }
 }
